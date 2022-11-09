@@ -45,6 +45,22 @@ function typeOf(val) {
 }
 
 
+/**
+ * apply - 使用 Symbol 属性
+ */
+Function.prototype.customApply = function (context, args = []) {
+  if (context == null) context = globalThis
+  if (typeof context !== 'object') context = new Object(context) // 值类型，变为对象
+
+  const fnKey = Symbol() // 不会出现属性名称的覆盖
+  context[fnKey] = this // this 就是当前的函数
+
+  const res = context[fnKey](...args) // 绑定了 this
+
+  delete context[fnKey] // 清理掉 fn ，防止污染
+
+  return res
+}
 /*
 // 测试代码：
 function test(){

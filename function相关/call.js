@@ -1,4 +1,5 @@
 /**
+ * call - eval 的方式
  * fn.call(thisArg, arg1, arg2)：thisArg 是可选的;
  * 1. 函数 fn 立即执行；
  * 2. 修改 fn 里面的 this 为 thisArg;
@@ -21,6 +22,23 @@ Function.prototype.myCall = function (thisArg) {
   var result = eval('thisArg.originFn(' + args + ')');
   delete thisArg.originFn;
   return result;
+}
+
+/**
+ * call - 使用 Symbol 属性名
+ */
+ Function.prototype.customCall = function (context, ...args) {
+  if (context == null) context = globalThis
+  if (typeof context !== 'object') context = new Object(context) // 值类型，变为对象
+
+  const fnKey = Symbol() // 不会出现属性名称的覆盖
+  context[fnKey] = this // this 就是当前的函数
+
+  const res = context[fnKey](...args) // 绑定了 this
+
+  delete context[fnKey] // 清理掉 fn ，防止污染
+
+  return res
 }
 
 /*

@@ -5,7 +5,7 @@
  */
 function deepClone(origin, hashMap = new WeakMap()) {
   // 如果是 null、undefined、原始值、function
-  if (origin === undefined || typeof origin != 'object') {
+  if (origin == null || typeof origin != 'object') {
     return origin
   }
 
@@ -26,6 +26,7 @@ function deepClone(origin, hashMap = new WeakMap()) {
   // 对象 或 数组
   const target = new origin.constructor();
   hashMap.set(origin, target);
+  // 遍历对象的每个 key，递归进行深拷贝
   for (var k in origin){
     if(origin.hasOwnProperty(k)){
       target[k] = deepClone(origin[k], hashMap)
