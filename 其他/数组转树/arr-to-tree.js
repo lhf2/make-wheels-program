@@ -24,11 +24,10 @@ function convert(arr) {
         }
 
         // 找到根结点
-        if(parentId === 0) root = treeNode
+        if (parentId === 0) root = treeNode
     });
     return root
 }
-
 
 const arr = [
     { id: 1, name: '部门A', parentId: 0 }, // 0 代表顶级节点，无父节点
@@ -38,5 +37,5 @@ const arr = [
     { id: 5, name: '部门E', parentId: 2 },
     { id: 6, name: '部门F', parentId: 3 },
 ]
-const tree = convert(arr)
+const tree = transTree(arr)
 console.info(tree)
