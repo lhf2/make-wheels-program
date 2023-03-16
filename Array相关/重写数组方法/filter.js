@@ -7,7 +7,9 @@
  */
 
 Array.prototype.myFilter = function (cb){
-  var _arr = this, thisArg = arguments[1] || window, res = [];
+  var _arr = this, 
+  thisArg = arguments[1] || window, 
+  res = [];
   for (var i = 0; i < _arr.length; i++) {
     if(cb.apply(thisArg, [_arr[i], i, _arr])){
       res.push(_arr[i])

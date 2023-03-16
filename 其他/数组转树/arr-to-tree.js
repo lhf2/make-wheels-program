@@ -29,6 +29,26 @@ function convert(arr) {
     return root
 }
 
+/****************************************************************************************/
+function jsonToTree(data) {
+    let ret = []
+    let map = new Map()
+    data.forEach(item => {
+        map.set(item.id, item)
+    });
+    data.forEach(item => {
+        let parent = map.get(item.pid)
+        if (parent) {
+            (parent.children || (parent.children = [])).push(item);
+        } else {
+            ret.push(item)
+        }
+    })
+
+    return ret
+}
+
+// test
 const arr = [
     { id: 1, name: '部门A', parentId: 0 }, // 0 代表顶级节点，无父节点
     { id: 2, name: '部门B', parentId: 1 },

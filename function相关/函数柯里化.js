@@ -1,3 +1,7 @@
+function curry(fn, ...args){
+  return args.length >= fn.length ? fn(...args) : curry.bind(null, fn, ...args)
+}
+
 function curry(fn, ...args) {
   if (args.length >= fn.length) {
     return fn(...args)

@@ -25,13 +25,14 @@ Function.prototype.myBind = function (thisArg) {
   return newFn;
 }
 
-/*
+
 // 测试代码
 function test(){
   this.a = 1;
-  console.log(this);
+  console.log(this); 
   console.log(arguments)
 }
 test.prototype.c = 3;
 var t = test.myBind({b: 2});
-new t();*/
+t() // { b: 2, a: 1 }
+// new t(); // {a: 1}

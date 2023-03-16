@@ -97,5 +97,18 @@ Array.prototype.fakeFlat = function (num = 1) {
     : arr.slice();
 }
 
+// 8. split 和 toString
+function flat(arr) {
+  return arr.toString().split(',')
+}
+
+// 9. 正则和 JSON 方法
+function flat(arr){
+  let str = JSON.stringify(arr)
+  str = str.replace(/(\[|\])/g, '')
+  str = '[' + str + ']'
+  return JSON.parse(str)
+}
+
 const arr = [1, [3, 4], , ,];
 console.log(arr.fakeFlat());

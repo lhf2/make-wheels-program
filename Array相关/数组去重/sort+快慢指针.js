@@ -1,17 +1,16 @@
 function unique(arr) {
   arr.sort((a, b) => a - b);
-  // [1, 1, 2, 2, 3, 4, 5, 5, 6, 6]
-  var slow = 1;
-  var fast = 1;
-  while (fast < arr.length) {
-    if (arr[fast] != arr[fast - 1]) {
-      arr[slow] = arr[fast];
-      slow++;
+  let slow = 0, fast = 0
+  while (fast <= arr.length) {
+    if (arr[slow] != arr[fast]) {
+      slow++
+      arr[slow] = arr[fast]
     }
-    fast++;
+    fast++
   }
-  arr.length = slow;
+  arr.length = slow
   return arr
+  // return arr.slice(0, slow)
 }
 
 console.log(unique([1, 4, 2, 5, 6, 3, 2, 5, 6, 1]));

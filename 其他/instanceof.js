@@ -7,6 +7,28 @@
  *     {} instanceof Object; //true
  */
 
+
+function myInstanceOf(instance, origin) {
+  // 普通值 或者 null undefined 直接返回 false
+  if ((typeof instance != 'object' && typeof instance != 'function') || instance == null) {
+      return false
+  }
+  // 获取对象的原型
+  let proto = Object.getPrototypeOf(instance)
+  // 获取构造函数的 prototype 对象
+  let prototype = origin.prototype
+  // 判断构造函数的 prototype 对象是否在对象的原型链上
+  while (proto != null) {
+      if (proto === prototype) {
+          return true
+      }
+      proto = Object.getPrototypeOf(proto)
+  }
+  return false
+}
+
+
+/************************************************** */
  function myInstanceOf(instance, origin) {
   // 普通值 或者 null undefined 直接返回 false
   if ((typeof instance != 'object' && typeof instance != 'function') || instance == null) {
