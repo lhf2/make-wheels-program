@@ -199,12 +199,3 @@ window.onload = function () {
         xhr.send(data);
     }
 }
-
-
-let str = ""
-let word = 'abcdefghigklmnopqrstuvwxyz0123456789'
-for (let i = 0; i < 17; i++) {
-    let randNum = Math.floor(Math.random() * word.length)
-    str += word[randNum]
-}
-console.log('str', str);
